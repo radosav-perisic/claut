@@ -8,18 +8,18 @@ const About = () => {
             <h2 className='text-5xl font-bold'>We've Earned the Trust of Developers Worldwide</h2>
             <p className='text-3xl py-6 text-gray-500'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
         </div>
-        <div>
-            <div>
-                <p>100%</p>
-                <p>Completion</p>
+        <div className='grid md:grid-cols-3 gap-1 px-2 text-center'>
+            <div className='border py-8 rounded-xl shadow-xl shadow-black/20'>
+                <p className='text-6xl font-bold text-violet-800'>100%</p>
+                <p className='text-gray-400 mt-2'>Completion</p>
             </div>
-            <div>
-                <p>24/7</p>
-                <p>Accessibility</p>
+            <div className='border py-8 rounded-xl shadow-xl  shadow-black/20'>
+                <p className='text-6xl font-bold text-violet-800'>24/7</p>
+                <p className='text-gray-400 mt-2'>Accessibility</p>
             </div>
-            <div>
-                <p>100K</p>
-                <p>Transactions</p>
+            <div className='border py-8 rounded-xl shadow-xl shadow-black/20'>
+                <p className='text-6xl font-bold text-violet-800'>100K</p>
+                <p className='text-gray-400 mt-2'>Transactions</p>
             </div>
         </div>
      </div>
