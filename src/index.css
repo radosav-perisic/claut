@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base{
+    li{
+        @apply p-4
+    }
+
+    button{
+        @apply text-white border bg-purple-600 border-purple-600
+        hover:bg-transparent hover:text-purple-600 rounded-md
+    }
+}
