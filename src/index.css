@@ -8,7 +8,7 @@
     }
 
     button{
-        @apply text-white border bg-purple-600 border-purple-600
-        hover:bg-transparent hover:text-purple-600 rounded-md
+        @apply text-white border bg-violet-600 border-violet-600
+        hover:bg-transparent hover:text-violet-600 rounded-md
     }
 }
