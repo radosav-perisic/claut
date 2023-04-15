@@ -6,8 +6,8 @@ import { ChipIcon, SupportIcon } from "@heroicons/react/solid";
 export const Support = () => {
   return (
     <div className="w-full h-screen mt-24">
-      <div>
-        <img src={support} alt="/"/>
+      <div className="w-full h-[700px] bg-zinc-900/90 absolute">
+        <img className='w-full h-full object-cover mix-blend-overlay' src={support} alt="/"/>
       </div>
       <div>
         <div>
