@@ -25,18 +25,18 @@ const Hero = () => {
           <img className="w-full" src={background} alt="/" />
         </div>
         <div className="absolute flex py-8 flex-col md:min-w-[760px] bottom-[5%] mx-1 md:left-1/2 transform md:-translate-x-1/2 bg-gray-200 border-slate-300 border rounded-xl text-center shadow-xl">
-          <p>Data Services</p>
+          <p className="sm:text-2xl font-medium  text-lg mb-6">Data Services</p>
           <div className="flex justify-between flex-wrap px-4">
-            <p className="flex px-4 py-2 text-slate-500">
+            <p className="flex px-4 py-2 text-slate-500 font-medium text-lg">
               <CloudUploadIcon className="h-6 text-violet-600" /> App Security
             </p>
-            <p className="flex px-4 py-2 text-slate-500">
+            <p className="flex px-4 py-2 text-slate-500 font-medium text-lg">
               <DatabaseIcon className="h-6 text-violet-600" /> Dashboard Design
             </p>
-            <p className="flex px-4 py-2 text-slate-500">
+            <p className="flex px-4 py-2 text-slate-500 font-medium text-lg">
               <PaperAirplaneIcon className="h-6 text-violet-600" /> Cloud Data
             </p>
-            <p className="flex px-4 py-2 text-slate-500">
+            <p className="flex px-4 py-2 text-slate-500 font-medium text-lg">
               <ServerIcon className="h-6 text-violet-600" /> API
             </p>
           </div>
