@@ -24,11 +24,11 @@ const Pricing = () => {
             </div>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             <div>
-                <p><CheckIcon />Lorem, ipsum dolor</p>
-                <p><CheckIcon />Lorem, ipsum dolor</p>
-                <p><CheckIcon />Lorem, ipsum dolor</p>
-                <p><CheckIcon />Lorem, ipsum dolor</p>
-                <p><CheckIcon />Lorem, ipsum dolor</p>
+                <p><CheckIcon className="w-8 text-green-800 mr-5"/>Lorem, ipsum dolor</p>
+                <p><CheckIcon className="w-8 text-green-800 mr-5"/>Lorem, ipsum dolor</p>
+                <p><CheckIcon className="w-8 text-green-800 mr-5"/>Lorem, ipsum dolor</p>
+                <p><CheckIcon className="w-8 text-green-800 mr-5"/>Lorem, ipsum dolor</p>
+                <p><CheckIcon className="w-8 text-green-800 mr-5"/>Lorem, ipsum dolor</p>
                 <button>Subscribe</button>
             </div>
           </div>
