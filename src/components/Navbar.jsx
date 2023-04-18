@@ -14,11 +14,11 @@ const Navbar = () => {
         <div className="flex items-center">
           <h1 className="text-3xl font-bold mr-4 sm:text-4xl ">Claut.</h1>
           <ul className="hidden md:flex ">
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-900 hover:rounded-lg hover:bg-violet-800/10 duration-500">Home</li>
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-900 hover:rounded-lg hover:bg-violet-800/10 duration-500">About</li>
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-900 hover:rounded-lg hover:bg-violet-800/10 duration-500">Support</li>
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-900 hover:rounded-lg hover:bg-violet-800/10 duration-500">Platforms</li>
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-900 hover:rounded-lg hover:bg-violet-800/10 duration-500">Pricing</li>
+            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">Home</li>
+            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">About</li>
+            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">Support</li>
+            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">Platforms</li>
+            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">Pricing</li>
           </ul>
         </div>
         <div className="hidden md:flex pr-4">
