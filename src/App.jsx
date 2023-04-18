@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import About from "./components/About";
 import {Support} from "./components/Support";
 import Notify from "./components/Notify";
+import Pricing from "./components/Pricing";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <About />
       <Support />
       <Notify />
+      <Pricing />
     </div>
   );
 }
