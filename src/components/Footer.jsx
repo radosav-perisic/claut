@@ -55,6 +55,16 @@ const Footer = () => {
                </form>
             </div>
         </div>
+        <div>
+            <p>2022 Claut, LLC. All rights reserved</p>
+            <div>
+                <FaFacebook />
+                <FaInstagram />
+                <FaTwitter />
+                <FaTwitch />
+                <FaGithub />
+            </div>
+        </div>
     </div>
   )
 }
