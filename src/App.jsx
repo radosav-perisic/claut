@@ -14,6 +14,7 @@ function App() {
       <Support />
       <Notify />
       <Pricing />
+      <Footer />
     </div>
   );
 }
