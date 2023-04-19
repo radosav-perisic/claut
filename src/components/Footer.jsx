@@ -46,6 +46,14 @@ const Footer = () => {
                     <li className='py-1'>Conditions</li>
                 </ul>
             </div>
+            <div className='col-span-2 pt-8 md:pt-2'>
+               <p>Subscribe to our newsletter</p>
+               <p>The latest news, articles, and resources, sent to your inbox weekly.</p>
+               <form>
+                <input type="email" />
+                <button>Get Started</button>
+               </form>
+            </div>
         </div>
     </div>
   )
