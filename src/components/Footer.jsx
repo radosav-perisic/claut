@@ -5,7 +5,7 @@ import {
 
 const Footer = () => {
   return (
-    <div name='footer' className='w-full mt-24 bg-purple-950 text-slate-300 py-8 px-2 '>
+    <div name='footer' className='w-full mt-24 bg-[#231444] text-slate-300 py-8 px-2 '>
         <div className='max-w-[1240px] mx-auto grid grid-cols-2 md:grid-cols-6 border-b-2 border-gray-600 py-8'>
             <div>
                 <h6 className='font-bold uppercase pt-2'>Solutions</h6>
@@ -47,17 +47,17 @@ const Footer = () => {
                 </ul>
             </div>
             <div className='col-span-2 pt-8 md:pt-2'>
-               <p>Subscribe to our newsletter</p>
-               <p>The latest news, articles, and resources, sent to your inbox weekly.</p>
-               <form>
-                <input type="email" />
-                <button>Get Started</button>
+               <p className='font-bold uppercase'>Subscribe to our newsletter</p>
+               <p className='py-4 '>The latest news, articles, and resources, sent to your inbox weekly.</p>
+               <form className='flex flex-col sm:flex-row'>
+                <input className='w-full p-2 mr-4 rounded-md mb-4' type="email" />
+                <button className='p-2 mb-4'>Get Started</button>
                </form>
             </div>
         </div>
-        <div>
+        <div className='flex max-w-[1240px] m-auto justify-between sm:flex-row text-center text-gray-500'>
             <p>2022 Claut, LLC. All rights reserved</p>
-            <div>
+            <div className='flex justify-between sm:max-w-[300px] pt-4 text-2xl'>
                 <FaFacebook />
                 <FaInstagram />
                 <FaTwitter />
