@@ -4,6 +4,7 @@ import About from "./components/About";
 import {Support} from "./components/Support";
 import Notify from "./components/Notify";
 import Pricing from "./components/Pricing";
+import Footer from "./components/Footer";
 
 function App() {
   return (
