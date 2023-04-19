@@ -18,12 +18,11 @@ const Pricing = () => {
         </div>
 
         <div className="grid md:grid-col-2 bg-white text-slate-900 m-4 p-8 rounded-xl shadow-2xl">
-          <div>
-            <span>Standard</span>
+            <span className="py-1 px-3 uppercase bg-indigo-200 text-indigo-900 rounded-2xl text-sm">Standard</span>
             <div>
-                <p>$38<span>/mo</span></p>
+                <p className="text-6xl flex py-4 font-bold">$38<span className="flex flex-col text-xl text-slate-500 justify-end">/mo</span></p>
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p className="text-2xl py-8 text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             <div>
                 <p><CheckIcon className="w-8 text-green-800 mr-5"/>Lorem, ipsum dolor</p>
                 <p><CheckIcon className="w-8 text-green-800 mr-5"/>Lorem, ipsum dolor</p>
@@ -32,7 +31,6 @@ const Pricing = () => {
                 <p><CheckIcon className="w-8 text-green-800 mr-5"/>Lorem, ipsum dolor</p>
                 <button>Subscribe</button>
             </div>
-          </div>
         </div>
       </div>
     </div>
