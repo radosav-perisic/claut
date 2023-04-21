@@ -50,14 +50,14 @@ const Footer = () => {
                <p className='font-bold uppercase'>Subscribe to our newsletter</p>
                <p className='py-4 '>The latest news, articles, and resources, sent to your inbox weekly.</p>
                <form className='flex flex-col sm:flex-row'>
-                <input className='w-full p-2 mr-4 rounded-md mb-4' type="email" />
-                <button className='p-2 mb-4'>Get Started</button>
+                <input className='w-full p-1 mr-4 rounded-md mb-4 text-[#080514]' type="email" placeholder='Enter email'/>
+                <button className=' mb-4 font-semibold'>Get Updates!</button>
                </form>
             </div>
         </div>
-        <div className='flex max-w-[1240px] m-auto justify-between sm:flex-row text-center text-gray-500'>
-            <p>2022 Claut, LLC. All rights reserved</p>
-            <div className='flex justify-between sm:max-w-[300px] pt-4 text-2xl'>
+        <div className='flex-col flex max-w-[1240px] px-2 py-4 mx-auto justify-between sm:flex-row text-center text-gray-500'>
+            <p className='py-4'>2022 Claut, LLC. All rights reserved</p>
+            <div className='flex justify-between sm:w-[300px] pt-4 text-2xl'>
                 <FaFacebook />
                 <FaInstagram />
                 <FaTwitter />
