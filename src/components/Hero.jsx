@@ -12,13 +12,13 @@ const Hero = () => {
     <div className="w-full h-screen bg-gray-200 flex flex-col justify-between">
       <div className="grid md:grid-cols-2 max-w-[1240px] m-auto">
         <div className="flex flex-col justify-center md:items-start w-full px-2 py-8 mt-1">
-          <p className="text-2xl">
+          <p className="text-2xl font-medium">
             Sequencing & Production with a Distinctive Approach
           </p>
-          <h1 className="py-3 text-5xl md:text-7xl font-bold">
+          <h1 className="py-3 text-5xl md:text-7xl font-extrabold ">
             Cloud Management
           </h1>
-          <p className="text-2xl">Introducing Our Innovative Tech Brand.</p>
+          <p className="text-2xl font-medium">Introducing Our Innovative Tech Brand.</p>
           <button className="py-3 px-6 sm:w-[60%] my-4 duration-300 font-medium tracking-wide ">
             Get Started
           </button>
@@ -26,7 +26,7 @@ const Hero = () => {
         <div>
           <img className="w-full" src={background} alt="/" />
         </div>
-        <div className="md:absolute static mt-20 py-8 flex-col md:min-w-[760px] bottom-[5%] mx-1 md:left-1/2 transform md:-translate-x-1/2 bg-gray-200 border-slate-300 border rounded-xl text-center shadow-xl">
+        <div className="absolute mt-20 lg:py-8 py-2 flex-col md:min-w-[760px] lg:bottom-[5%] bottom-[0%] mx-1 md:left-1/2 transform md:-translate-x-1/2 bg-gray-200 border-slate-300 border rounded-xl text-center shadow-xl">
           <p className="sm:text-2xl font-medium  text-lg mb-6">Data Services</p>
           <div className="flex justify-between flex-wrap px-4">
             <p className="flex px-4 py-2 text-slate-500 font-medium text-lg">
