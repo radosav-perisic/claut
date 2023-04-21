@@ -12,7 +12,7 @@ const Navbar = () => {
     <div className="w-screen h-[80px] z-10 bg-gray-200 drop-shadow-lg fixed">
       <div className="px-2 flex justify-between items-center w-full h-full">
         <div className="flex items-center">
-          <h1 className="text-3xl font-bold mr-4 sm:text-4xl ">Claut.</h1>
+          <h1 className="text-3xl font-bold mr-4 sm:text-4xl ">C<span className="text-violet-600">l</span>a<span className="text-violet-600">u</span>t<span className="text-violet-600">.</span></h1>
           <ul className="hidden md:flex ">
             <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">Home</li>
             <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">About</li>
