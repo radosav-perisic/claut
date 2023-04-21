@@ -17,7 +17,7 @@ const Navbar = () => {
             <span className="text-violet-600">.</span>
           </h1>
           <ul className="hidden md:flex ">
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="home"
@@ -28,7 +28,7 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="about"
@@ -39,7 +39,7 @@ const Navbar = () => {
                 About
               </Link>
             </li>
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="support"
@@ -50,7 +50,7 @@ const Navbar = () => {
                 Support
               </Link>
             </li>
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="platforms"
@@ -61,7 +61,7 @@ const Navbar = () => {
                 Platforms
               </Link>
             </li>
-            <li className="py-1 px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="pricing"
