@@ -7,8 +7,6 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
   const clickHandler = () => setNav(!nav);
 
-  
-
   return (
     <div className="w-screen h-[80px] z-10 bg-gray-200 drop-shadow-lg fixed">
       <div className="px-2 flex justify-between items-center w-full h-full">
@@ -90,6 +88,7 @@ const Navbar = () => {
         <li className="border-b-2 border-gray-300 w-full">
           <Link
             activeClass="active"
+            onClick={clickHandler}
             to="home"
             smooth={true}
             offset={50}
@@ -101,6 +100,7 @@ const Navbar = () => {
         <li className="border-b-2 border-gray-300 w-full">
           <Link
             activeClass="active"
+            onClick={clickHandler}
             to="about"
             smooth={true}
             offset={-200}
@@ -112,6 +112,7 @@ const Navbar = () => {
         <li className="border-b-2 border-gray-300 w-full">
           <Link
             activeClass="active"
+            onClick={clickHandler}
             to="support"
             smooth={true}
             offset={-80}
@@ -123,6 +124,7 @@ const Navbar = () => {
         <li className="border-b-2 border-gray-300 w-full">
           <Link
             activeClass="active"
+            onClick={clickHandler}
             to="platforms"
             smooth={true}
             offset={-100}
@@ -134,6 +136,7 @@ const Navbar = () => {
         <li className="border-b-2 border-gray-300 w-full">
           <Link
             activeClass="active"
+            onClick={clickHandler}
             to="pricing"
             smooth={true}
             offset={-50}
