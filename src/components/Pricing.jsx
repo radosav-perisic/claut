@@ -38,23 +38,23 @@ const Pricing = () => {
             </p>
             <div className="text-2xl relative">
               <p className="flex py-4 ">
-                <CheckIcon className="w-8 text-green-800 mr-5" />
+                <CheckIcon className="w-8 text-green-500 mr-5" />
                 Basic features included
               </p>
               <p className="flex py-4 ">
-                <CheckIcon className="w-8 text-yellow-500 mr-5" />
-                Limited number of API calls
+                <CheckIcon className="w-7 md:w-8 text-green-500 mr-5" />
+                Limited API calls
               </p>
               <p className="flex py-4 ">
-                <CheckIcon className="w-8 text-yellow-500 mr-5" />
+                <CheckIcon className="w-7 md:w-8 text-green-500 mr-5" />
                 Email support only
               </p>
               <p className="flex py-4 ">
-                <XIcon className="w-8 text-red-800 mr-5" />
+                <XIcon className="w-7 md:w-8 text-red-800 mr-5" />
                 No data encryption
               </p>
               <p className="flex py-4 ">
-                <XIcon className="w-8 text-red-800 mr-5" />
+                <XIcon className="w-7 md:w-8 text-red-800 mr-5" />
                 No custom branding
               </p>
               <button className="w-full py-4 my-4 duration-300">
@@ -79,23 +79,23 @@ const Pricing = () => {
             </p>
             <div className="text-2xl relative">
               <p className="flex py-4 text-xl">
-                <CheckIcon className="w-8 text-green-800 mr-5" />
+                <CheckIcon className="w-8 text-green-500 mr-5" />
                 Advanced features included
               </p>
               <p className="flex py-4 text-xl">
-                <CheckIcon className="w-8 text-green-800 mr-5" />
+                <CheckIcon className="w-7 md:w-8 text-green-500 mr-5" />
                 Unlimited API calls
               </p>
               <p className="flex py-4 text-xl">
-                <CheckIcon className="w-8 text-green-800 mr-5" />
+                <CheckIcon className="w-8 text-green-500 mr-5" />
                 24/7 multi-language support
               </p>
               <p className="flex py-4 text-xl">
-                <CheckIcon className="w-8 text-green-800 mr-5" />
+                <CheckIcon className="w-7 md:w-8 text-green-500 mr-5" />
                 Data encryption included
               </p>
               <p className="flex py-4 text-xl">
-                <CheckIcon className="w-8 text-green-800 mr-5" />
+                <CheckIcon className="w-7 md:w-8 text-green-500 mr-5" />
                 Custom branding available
               </p>
               <button className="w-full py-4 my-4 duration-300">
