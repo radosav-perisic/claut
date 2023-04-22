@@ -78,23 +78,23 @@ const Pricing = () => {
             Comprehensive cloud management services
             </p>
             <div className="text-2xl relative">
-              <p className="flex py-4 ">
+              <p className="flex py-4 text-xl">
                 <CheckIcon className="w-8 text-green-800 mr-5" />
                 Advanced features included
               </p>
-              <p className="flex py-4 ">
+              <p className="flex py-4 text-xl">
                 <CheckIcon className="w-8 text-green-800 mr-5" />
                 Unlimited API calls
               </p>
-              <p className="flex py-4 ">
+              <p className="flex py-4 text-xl">
                 <CheckIcon className="w-8 text-green-800 mr-5" />
                 24/7 multi-language support
               </p>
-              <p className="flex py-4 ">
+              <p className="flex py-4 text-xl">
                 <CheckIcon className="w-8 text-green-800 mr-5" />
                 Data encryption included
               </p>
-              <p className="flex py-4 ">
+              <p className="flex py-4 text-xl">
                 <CheckIcon className="w-8 text-green-800 mr-5" />
                 Custom branding available
               </p>
