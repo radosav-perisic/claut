@@ -36,7 +36,7 @@ const Notify = () => {
               <h3 className="font-bold text-lg">Performance Insights</h3>
               <p className="text-lg pt-2 pb-4">
                 {" "}
-                et actionable insights into how your apps are performing in
+                Get actionable insights into how your apps are performing in
                 real-time
               </p>
             </div>
@@ -74,7 +74,7 @@ const Notify = () => {
               <h3 className="font-bold text-lg">Resource Recommendations</h3>
               <p className="text-lg pt-2 pb-4">
                 {" "}
-                eceive personalized recommendations to optimize your cloud usage
+                Receive personalized recommendations to optimize your cloud usage
               </p>
             </div>
           </div>
