@@ -34,7 +34,7 @@ const Navbar = () => {
                 to="about"
                 smooth={true}
                 offset={-200}
-                duration={500}
+                duration={400}
               >
                 About
               </Link>
@@ -56,7 +56,7 @@ const Navbar = () => {
                 to="platforms"
                 smooth={true}
                 offset={-100}
-                duration={500}
+                duration={600}
               >
                 Platforms
               </Link>
@@ -67,7 +67,7 @@ const Navbar = () => {
                 to="pricing"
                 smooth={true}
                 offset={-50}
-                duration={500}
+                duration={700}
               >
                 Pricing
               </Link>
