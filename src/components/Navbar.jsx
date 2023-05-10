@@ -11,13 +11,13 @@ const Navbar = () => {
     <div className="w-screen h-[80px] z-10 bg-gray-200 drop-shadow-lg fixed">
       <div className="px-2 flex justify-between items-center w-full h-full">
         <div className="flex items-center">
-          <h1 className="text-3xl font-bold mr-4 sm:text-4xl ">
+          <h1 className="font-bold mr-4 text-5xl ">
             C<span className="text-violet-600">l</span>a
             <span className="text-violet-600">u</span>t
             <span className="text-violet-600">.</span>
           </h1>
           <ul className="hidden md:flex ">
-            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="home"
@@ -28,7 +28,7 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="about"
@@ -39,7 +39,7 @@ const Navbar = () => {
                 About
               </Link>
             </li>
-            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="support"
@@ -50,7 +50,7 @@ const Navbar = () => {
                 Support
               </Link>
             </li>
-            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="platforms"
@@ -61,7 +61,7 @@ const Navbar = () => {
                 Platforms
               </Link>
             </li>
-            <li className="py-1 cursor-pointer px-4 m-1 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
+            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-500">
               <Link
                 activeClass="active"
                 to="pricing"
@@ -74,12 +74,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="hidden md:flex pr-4">
-          <button className="border-none bg-transparent text-black mr-4 duration-300">
-            Sign In
-          </button>
-          <button className="px-6 py-2 duration-300">Sign Up</button>
-        </div>
+
         <div onClick={clickHandler} className="md:hidden  mr-4  ">
           {!nav ? <MenuIcon className="w-6" /> : <XIcon className="w-6" />}
         </div>
