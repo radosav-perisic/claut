@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link, animateScroll as scroll } from "react-scroll";
+import Cloud from '../assets/cloud.png'
+import Shield from '../assets/shield.png'
+// import cloud from '../assets/cloud.png'
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -73,6 +76,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
+          <img src={Shield} className="w-16 mx-auto" />
         </div>
 
         <div onClick={clickHandler} className="md:hidden  mr-4  ">
