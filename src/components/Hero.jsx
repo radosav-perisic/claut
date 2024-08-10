@@ -33,11 +33,20 @@ const Hero = () => {
             smooth={true}
             offset={-50}
             duration={700}
-            className=" "
+            className="mt-10"
           >
-            <button className="py-3 px-20 rounded-lg text-center my-4 duration-300 font-medium tracking-wide" >
-              Get Started
-            </button>
+            <button class="btn cube cube-hover" type="button">
+  <div class="bg-top">
+    <div class="bg-inner"></div>
+  </div>
+  <div class="bg-right">
+    <div class="bg-inner"></div>
+  </div>
+  <div class="bg">
+    <div class="bg-inner"></div>
+  </div>
+  <div class="text font-extrabold">Get Started</div>
+</button>
           </Link>
         </div>
         <div>
