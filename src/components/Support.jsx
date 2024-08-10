@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import support from "../assets/support-team.jpg";
 import { PhoneIcon, ArrowSmRightIcon } from "@heroicons/react/outline";
 import { ChipIcon, SupportIcon } from "@heroicons/react/solid";
 
 export const Support = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    company: "",
+    message: "",
+  });
+
+  const handleContactClick = (title) => {
+    setModalTitle(title);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setFormData({ email: "", company: "", message: "" });
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically handle form submission, like sending data to a server
+    alert(`Message Sent!\n\nTitle: ${modalTitle}\nEmail: ${formData.email}\nCompany: ${formData.company}\nMessage: ${formData.message}`);
+    closeModal();
+  };
+
   return (
     <div name="support" className="w-full mt-24">
       <div className="w-full h-[700px] bg-zinc-900/90 absolute">
@@ -26,7 +55,7 @@ export const Support = () => {
             professionals who are committed to providing exceptional service to
             our customers. With years of experience and a deep understanding of
             our platform, they are well-equipped to help you with any questions
-            or concerns you may have
+            or concerns you may have.
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 relative gap-x-8 gap-y-16 px-4 pt-12 sm:pt-20 text-black">
@@ -41,10 +70,9 @@ export const Support = () => {
                 in touch with us today to schedule a consultation.
               </p>
             </div>
-            <div className="bg-slate-100 pl-8 py-4">
+            <div className="bg-slate-100 pl-8 py-4 cursor-pointer" onClick={() => handleContactClick("Sales")}>
               <p className="flex items-center text-violet-700">
-                {" "}
-                Contact Us <ArrowSmRightIcon className="w-5 ml-2" />{" "}
+                Contact Us <ArrowSmRightIcon className="w-5 ml-2" />
               </p>
             </div>
           </div>
@@ -59,10 +87,9 @@ export const Support = () => {
                 the problem quickly.
               </p>
             </div>
-            <div className="bg-slate-100 pl-8 py-4">
+            <div className="bg-slate-100 pl-8 py-4 cursor-pointer" onClick={() => handleContactClick("Technical Support")}>
               <p className="flex items-center text-violet-700">
-                {" "}
-                Contact Us <ArrowSmRightIcon className="w-5 ml-2" />{" "}
+                Contact Us <ArrowSmRightIcon className="w-5 ml-2" />
               </p>
             </div>
           </div>
@@ -76,15 +103,79 @@ export const Support = () => {
                 form and we'll get back to you as soon as possible.
               </p>
             </div>
-            <div className="bg-slate-100 pl-8 py-4">
+            <div className="bg-slate-100 pl-8 py-4 cursor-pointer" onClick={() => handleContactClick("Media Inquiries")}>
               <p className="flex items-center text-violet-700">
-                {" "}
-                Contact Us <ArrowSmRightIcon className="w-5 ml-2" />{" "}
+                Contact Us <ArrowSmRightIcon className="w-5 ml-2" />
               </p>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg max-w-lg w-full">
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">{modalTitle}</h3>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="company">
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  required
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="message">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  rows="4"
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <button
+                  type="button"
+                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                  onClick={closeModal}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
