@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { UserIcon } from "@heroicons/react/solid";
+import { Link } from "react-scroll";
 
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { Link, animateScroll as scroll } from "react-scroll";
-import Shield from '../assets/shield.png'
-
-const Navbar = () => {
+const Navbar = ({ isLoggedIn, openProfileModal, logout }) => {
   const [nav, setNav] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+
   const clickHandler = () => setNav(!nav);
+  const handleProfileClick = () => setShowProfileDropdown(!showProfileDropdown);
 
   return (
     <div className="w-screen h-[80px] z-10 bg-gray-200 drop-shadow-lg fixed">
@@ -18,7 +19,7 @@ const Navbar = () => {
             <span className="text-violet-600">.</span>
           </h1>
           <ul className="hidden md:flex ">
-            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-100">
+          <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-100">
               <Link
                 activeClass="active"
                 to="home"
@@ -74,75 +75,103 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <img src={Shield} className="w-16 mx-auto" />
+        </div>
+
+        <div className="relative">
+          <UserIcon className="w-8 cursor-pointer mr-8" onClick={handleProfileClick} />
+          {showProfileDropdown && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+              {!isLoggedIn ? (
+                <p
+                  className="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+                  onClick={openProfileModal}
+                >
+                  Login
+                </p>
+              ) : (
+                <>
+                  <p
+                    className="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+                    onClick={() => {
+                      setShowProfileDropdown(false);
+                      openProfileModal();
+                    }}
+                  >
+                    Profile
+                  </p>
+                  <p
+                    className="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+                    onClick={logout}
+                  >
+                    Logout
+                  </p>
+                </>
+              )}
+            </div>
+          )}
         </div>
 
         <div onClick={clickHandler} className="md:hidden  mr-4  ">
-          {!nav ? <MenuIcon className="w-6" /> : <XIcon className="w-6" />}
+          {nav ? "Close" : "Menu"}
         </div>
       </div>
+
       <ul className={!nav ? "hidden" : "absolute bg-gray-200 w-full px-8"}>
-        <li className="border-b-2 border-gray-300 w-full">
-          <Link
-            activeClass="active"
-            onClick={clickHandler}
-            to="home"
-            smooth={true}
-            offset={50}
-            duration={500}
-          >
-            Home
-          </Link>
-        </li>
-        <li className="border-b-2 border-gray-300 w-full">
-          <Link
-            activeClass="active"
-            onClick={clickHandler}
-            to="about"
-            smooth={true}
-            offset={-200}
-            duration={500}
-          >
-            About
-          </Link>
-        </li>
-        <li className="border-b-2 border-gray-300 w-full">
-          <Link
-            activeClass="active"
-            onClick={clickHandler}
-            to="support"
-            smooth={true}
-            offset={-80}
-            duration={500}
-          >
-            Support
-          </Link>
-        </li>
-        <li className="border-b-2 border-gray-300 w-full">
-          <Link
-            activeClass="active"
-            onClick={clickHandler}
-            to="platforms"
-            smooth={true}
-            offset={-100}
-            duration={500}
-          >
-            Platforms
-          </Link>
-        </li>
-        <li className="border-b-2 border-gray-300 w-full">
-          <Link
-            activeClass="active"
-            onClick={clickHandler}
-            to="pricing"
-            smooth={true}
-            offset={-50}
-            duration={500}
-          >
-            Pricing
-          </Link>
-        </li>
-       
+      <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-100">
+              <Link
+                activeClass="active"
+                to="home"
+                smooth={true}
+                offset={50}
+                duration={500}
+              >
+                Home
+              </Link>
+            </li>
+            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-100">
+              <Link
+                activeClass="active"
+                to="about"
+                smooth={true}
+                offset={-200}
+                duration={400}
+              >
+                About
+              </Link>
+            </li>
+            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-100">
+              <Link
+                activeClass="active"
+                to="support"
+                smooth={true}
+                offset={-80}
+                duration={500}
+              >
+                Support
+              </Link>
+            </li>
+            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-100">
+              <Link
+                activeClass="active"
+                to="platforms"
+                smooth={true}
+                offset={-100}
+                duration={600}
+              >
+                Platforms
+              </Link>
+            </li>
+            <li className="py-0.5 cursor-pointer px-4 text-[17px] mt-4  m-3 font-medium hover:text-violet-950 hover:rounded-lg hover:bg-violet-800/10 duration-100">
+              <Link
+                activeClass="active"
+                to="pricing"
+                smooth={true}
+                offset={-50}
+                duration={700}
+              >
+                Pricing
+              </Link>
+            </li>
       </ul>
     </div>
   );
