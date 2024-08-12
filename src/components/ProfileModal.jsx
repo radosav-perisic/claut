@@ -1,8 +1,19 @@
 import React, { useState } from "react";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { GoogleLoginButton, TwitterLoginButton } from "react-social-login-buttons";
-import { XIcon } from "@heroicons/react/outline"; // Import the X icon
+import { XIcon } from "@heroicons/react/outline";
 
-const ProfileModal = ({ showModal, closeModal, isLoggedIn, userProfile, updateUserProfile }) => {
+const clientId = "846342644392-seh35r69e35ma2pu9i97pcn4c1j8qrc2.apps.googleusercontent.com";
+
+const ProfileModal = ({
+  showModal,
+  closeModal,
+  isLoggedIn,
+  setIsLoggedIn,
+  userProfile,
+  setUserProfile,
+  updateUserProfile,
+}) => {
   const [formData, setFormData] = useState(userProfile || {
     firstName: "",
     lastName: "",
@@ -28,16 +39,35 @@ const ProfileModal = ({ showModal, closeModal, isLoggedIn, userProfile, updateUs
       return;
     }
 
-    // Password would be hashed here before sending it to the server
-    const hashedPassword = formData.password; // Replace with actual hash if needed
-
     const profileData = {
       ...formData,
-      password: hashedPassword,
     };
 
     updateUserProfile(profileData);
     closeModal();
+  };
+
+  const handleLoginSuccess = (response) => {
+    const profile = response.profileObj;
+    const profileData = {
+      firstName: profile.givenName,
+      lastName: profile.familyName,
+      email: profile.email,
+      googleId: profile.googleId,
+    };
+
+    setUserProfile(profileData);
+    setIsLoggedIn(true);
+    setShowLoginOptions(false);
+  };
+
+  const handleLoginFailure = (response) => {
+    console.error("Login failed:", response);
+  };
+
+  const handleLogoutSuccess = () => {
+    setUserProfile(null);
+    setIsLoggedIn(false);
   };
 
   return (
@@ -48,21 +78,30 @@ const ProfileModal = ({ showModal, closeModal, isLoggedIn, userProfile, updateUs
       >
         <div
           className="bg-white p-6 rounded-lg max-w-lg w-full relative"
-          onClick={(e) => e.stopPropagation()} 
+          onClick={(e) => e.stopPropagation()}
         >
-          <button
+          <div
             className="absolute top-3 right-3 text-gray-700 hover:text-gray-900"
             onClick={closeModal}
           >
             <XIcon className="w-6 h-6" />
-          </button>
+          </div>
           <h3 className="text-2xl font-bold mb-4 text-gray-900">
             {isLoggedIn || !showLoginOptions ? "Create or Update Your Profile" : "Login to Your Account"}
           </h3>
 
           {showLoginOptions && !isLoggedIn ? (
             <div>
-              <GoogleLoginButton onClick={() => console.log("Google login clicked")} />
+              <GoogleLogin
+                clientId={clientId}
+                buttonText="Login"
+                onSuccess={handleLoginSuccess}
+                onFailure={handleLoginFailure}
+                cookiePolicy={"single_host_origin"}
+                render={(renderProps) => (
+                  <GoogleLoginButton onClick={renderProps.onClick} />
+                )}
+              />
               <TwitterLoginButton onClick={() => console.log("Twitter login clicked")} />
               <p className="text-center mt-4 text-gray-700">or</p>
               <div className="mb-4">
@@ -225,6 +264,23 @@ const ProfileModal = ({ showModal, closeModal, isLoggedIn, userProfile, updateUs
                 </button>
               </div>
             </form>
+          )}
+          {isLoggedIn && (
+            <div className="mt-4">
+              <GoogleLogout
+                clientId={clientId}
+                buttonText="Logout"
+                onLogoutSuccess={handleLogoutSuccess}
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    className="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                  >
+                    Logout
+                  </button>
+                )}
+              />
+            </div>
           )}
         </div>
       </div>

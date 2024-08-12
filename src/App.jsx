@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
@@ -7,9 +7,21 @@ import Notify from "./components/Notify";
 import Pricing from "./components/Pricing";
 import Footer from "./components/Footer";
 import ProfileModal from "./components/ProfileModal";
-import ProfilePage from "./pages/ProfilePage"; // Assuming you have a ProfilePage component
+import { gapi } from "gapi-script";
+
+const clientId = "846342644392-seh35r69e35ma2pu9i97pcn4c1j8qrc2.apps.googleusercontent.com";
 
 function App() {
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "",
+      });
+    }
+    gapi.load("client:auth2", start);
+  }, []);
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -59,6 +71,8 @@ function App() {
         isLoggedIn={isLoggedIn}
         userProfile={userProfile}
         updateUserProfile={updateUserProfile}
+        setIsLoggedIn={setIsLoggedIn}
+        setUserProfile={setUserProfile}
       />
 
       {showRequestModal && (
