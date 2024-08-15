@@ -1,20 +1,16 @@
-import React, { useState } from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { GoogleLoginButton, TwitterLoginButton } from "react-social-login-buttons";
+import React, { useState, useEffect } from "react";
+import { GoogleLoginButton } from "react-social-login-buttons";
 import { XIcon } from "@heroicons/react/outline";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
+import axios from "axios";
+import { gapi } from "gapi-script";
+import shield from '../assets/shield.png';
 
 const clientId = "846342644392-seh35r69e35ma2pu9i97pcn4c1j8qrc2.apps.googleusercontent.com";
 
-const ProfileModal = ({
-  showModal,
-  closeModal,
-  isLoggedIn,
-  setIsLoggedIn,
-  userProfile,
-  setUserProfile,
-  updateUserProfile,
-}) => {
-  const [formData, setFormData] = useState(userProfile || {
+const ProfileModal = ({ showModal, closeModal, isLoggedIn, userProfile, updateUserProfile, logout }) => {
+  
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -26,262 +22,353 @@ const ProfileModal = ({
   });
 
   const [showLoginOptions, setShowLoginOptions] = useState(!isLoggedIn);
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+
+  useEffect(() => {
+    if (userProfile) {
+      setFormData({
+        firstName: userProfile.firstName || "",
+        lastName: userProfile.lastName || "",
+        email: userProfile.email || "",
+        phone: userProfile.phone || "",
+        company: userProfile.company || "",
+        address: userProfile.address || "",
+        password: "", 
+        confirmPassword: ""
+      });
+    }
+  }, [userProfile]);
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "email",
+      });
+    }
+    gapi.load("client:auth2", start);
+  }, []);
+
+  const handleLoginSuccess = async (response) => {
+    const profile = response.profileObj;
+    const data = {
+      firstName: profile.givenName,
+      lastName: profile.familyName,
+      email: profile.email,
+      password: "", 
+      confirmPassword: "", 
+      phone: "",
+      company: "",
+      address: "",
+    };
+
+    try {
+      const res = await axios.post("http://localhost:5000/api/register", data);
+      updateUserProfile(data);
+      closeModal();
+    } catch (err) {
+      console.error("Registration failed:", err.response ? err.response.data : err.message);
+    }
+  };
+
+  const handleLoginFailure = (response) => {
+    console.error("Google login failed:", response);
+  };
+
+  const handleLogout = () => {
+    setShowLogoutConfirmation(true);
+  };
+
+  const confirmLogout = () => {
+    logout();
+    closeModal();
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutConfirmation(false);
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!isLoggedIn && formData.password !== formData.confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
-    const profileData = {
-      ...formData,
-    };
-
-    updateUserProfile(profileData);
-    closeModal();
+    try {
+      const res = await axios.put("http://localhost:5000/api/profile", formData); 
+      updateUserProfile(formData); 
+      closeModal();
+    } catch (err) {
+      console.error("Profile update failed:", err.response ? err.response.data : err.message);
+    }
   };
 
-  const handleLoginSuccess = (response) => {
-    const profile = response.profileObj;
-    const profileData = {
-      firstName: profile.givenName,
-      lastName: profile.familyName,
-      email: profile.email,
-      googleId: profile.googleId,
-    };
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
 
-    setUserProfile(profileData);
-    setIsLoggedIn(true);
-    setShowLoginOptions(false);
-  };
-
-  const handleLoginFailure = (response) => {
-    console.error("Login failed:", response);
-  };
-
-  const handleLogoutSuccess = () => {
-    setUserProfile(null);
-    setIsLoggedIn(false);
+    try {
+      const res = await axios.post("http://localhost:5000/api/login", {
+        email: formData.email,
+        password: formData.password,
+      });
+      updateUserProfile(res.data.user);
+      closeModal();
+    } catch (err) {
+      console.error("Login failed:", err.response ? err.response.data : err.message);
+      alert("Login failed: " + (err.response ? err.response.data.message : err.message));
+    }
   };
 
   return (
     showModal && (
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-        onClick={closeModal} 
-      >
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={closeModal}>
         <div
           className="bg-white p-6 rounded-lg max-w-lg w-full relative"
           onClick={(e) => e.stopPropagation()}
         >
+          {/* Background Image */}
           <div
-            className="absolute top-3 right-3 text-gray-700 hover:text-gray-900"
-            onClick={closeModal}
-          >
-            <XIcon className="w-6 h-6" />
-          </div>
-          <h3 className="text-2xl font-bold mb-4 text-gray-900">
-            {isLoggedIn || !showLoginOptions ? "Create or Update Your Profile" : "Login to Your Account"}
-          </h3>
+            style={{
+              backgroundImage: `url(${shield})`,
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              opacity: 0.2, // Adjust the opacity here
+              zIndex: -1, // Ensure the image stays behind the content
+            }}
+          />
 
-          {showLoginOptions && !isLoggedIn ? (
-            <div>
-              <GoogleLogin
-                clientId={clientId}
-                buttonText="Login"
-                onSuccess={handleLoginSuccess}
-                onFailure={handleLoginFailure}
-                cookiePolicy={"single_host_origin"}
-                render={(renderProps) => (
-                  <GoogleLoginButton onClick={renderProps.onClick} />
-                )}
-              />
-              <TwitterLoginButton onClick={() => console.log("Twitter login clicked")} />
-              <p className="text-center mt-4 text-gray-700">or</p>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <button
-                onClick={() => console.log("Email login clicked")}
-                className="mt-4 w-full px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
-              >
-                Login
-              </button>
-              <p className="text-center mt-4 text-gray-700">or</p>
-              <button
-                onClick={() => setShowLoginOptions(false)}
-                className="mt-4 w-full px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
-              >
-                Create Account
-              </button>
+          <div className="relative z-10"> {/* Ensures the form content is above the background image */}
+            <div className="absolute top-3 right-3 text-gray-700 hover:text-gray-900" onClick={closeModal}>
+              <XIcon className="w-6 h-6" />
             </div>
-          ) : (
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">
+              {isLoggedIn && !showLoginOptions ? "Edit Your Profile" : "Account Options"}
+            </h3>
+
+            {showLoginOptions && !isLoggedIn ? (
+              <div>
+                <GoogleLogin
+                  clientId={clientId}
+                  buttonText="Login with Google"
+                  onSuccess={handleLoginSuccess}
+                  onFailure={handleLoginFailure}
+                  cookiePolicy={"single_host_origin"}
+                  render={(renderProps) => (
+                    <GoogleLoginButton onClick={renderProps.onClick} disabled={renderProps.disabled} />
+                  )}
                 />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  required
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="company">
-                  Company (Optional)
-                </label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
-                  Address (Optional)
-                </label>
-                <input
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="flex items-center justify-between">
+                <p className="text-center mt-4 text-gray-700">or</p>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
                 <button
-                  type="button"
-                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-                  onClick={closeModal}
+                  onClick={handleLoginSubmit}
+                  className="mt-4 w-full px-4 py-2 bg-purple-700 text-white hover:text-white rounded hover:bg-purple-600"
                 >
-                  Cancel
+                  Login
                 </button>
+                <p className="text-center mt-4 text-gray-700">or</p>
                 <button
-                  type="submit"
-                  className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+                  onClick={() => setShowLoginOptions(false)}
+                  className="mt-4 w-full px-4 py-2 bg-purple-700 text-white hover:text-white rounded hover:bg-purple-600"
                 >
-                  Save
+                  Create Account
                 </button>
               </div>
-            </form>
-          )}
-          {isLoggedIn && (
-            <div className="mt-4">
-              <GoogleLogout
-                clientId={clientId}
-                buttonText="Logout"
-                onLogoutSuccess={handleLogoutSuccess}
-                render={(renderProps) => (
+            ) : isLoggedIn && !showLogoutConfirmation && showLoginOptions ? (
+              <div>
+                <button
+                  onClick={() => setShowLoginOptions(false)}
+                  className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                  Edit Profile
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="mt-4 w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              showLogoutConfirmation && (
+                <div className="text-center">
+                  <p className="mb-4 text-gray-700">Are you sure you want to log out?</p>
+                  <div className="flex justify-between">
+                    <button
+                      onClick={cancelLogout}
+                      className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={confirmLogout}
+                      className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              )
+            )}
+
+            {!showLoginOptions && (
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="company">
+                    Company (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+                    Address (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
                   <button
-                    onClick={renderProps.onClick}
-                    className="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                    type="button"
+                    className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                    onClick={closeModal}
                   >
-                    Logout
+                    Cancel
                   </button>
-                )}
-              />
-            </div>
-          )}
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     )
