@@ -100,7 +100,7 @@ const Pricing = () => {
                     <span>Basic features included</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("basic-features")}
                   />
                 </div>
@@ -110,7 +110,7 @@ const Pricing = () => {
                     <span>Limited API calls</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("limited-api")}
                   />
                 </div>
@@ -120,7 +120,7 @@ const Pricing = () => {
                     <span>Email support only</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("email-support")}
                   />
                 </div>
@@ -130,7 +130,7 @@ const Pricing = () => {
                     <span>No data encryption</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("no-encryption")}
                   />
                 </div>
@@ -140,7 +140,7 @@ const Pricing = () => {
                     <span>No custom branding</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("no-branding")}
                   />
                 </div>
@@ -176,7 +176,7 @@ const Pricing = () => {
                     <span>Advanced features included</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("advanced-features")}
                   />
                 </div>
@@ -186,7 +186,7 @@ const Pricing = () => {
                     <span>Unlimited API calls</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("unlimited-api")}
                   />
                 </div>
@@ -196,7 +196,7 @@ const Pricing = () => {
                     <span>24/7 multi-language support</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("support")}
                   />
                 </div>
@@ -206,7 +206,7 @@ const Pricing = () => {
                     <span>Data encryption included</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("encryption")}
                   />
                 </div>
@@ -216,7 +216,7 @@ const Pricing = () => {
                     <span>Custom branding available</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer"
                     onClick={() => handleInfoClick("branding")}
                   />
                 </div>
@@ -252,7 +252,7 @@ const Pricing = () => {
                     <span>AI-Powered Security Analytics</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("ai-analytics")}
                   />
                 </div>
@@ -262,7 +262,7 @@ const Pricing = () => {
                     <span>Full-Suite API Access</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("full-api")}
                   />
                 </div>
@@ -272,7 +272,7 @@ const Pricing = () => {
                     <span>Priority 24/7 Support</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("priority-support")}
                   />
                 </div>
@@ -282,7 +282,7 @@ const Pricing = () => {
                     <span>Advanced Data Encryption</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("advanced-encryption")}
                   />
                 </div>
@@ -292,7 +292,7 @@ const Pricing = () => {
                     <span>Global Compliance Suite</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("compliance")}
                   />
                 </div>
@@ -302,7 +302,7 @@ const Pricing = () => {
                     <span>Custom Branding & White-Labeling</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("white-labeling")}
                   />
                 </div>
@@ -312,7 +312,7 @@ const Pricing = () => {
                     <span>Advanced Multi-Cloud Support</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("multi-cloud")}
                   />
                 </div>
@@ -322,7 +322,7 @@ const Pricing = () => {
                     <span>Automated Backup & Disaster Recovery</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("backup-recovery")}
                   />
                 </div>
@@ -332,7 +332,7 @@ const Pricing = () => {
                     <span>Threat Intelligence Integration</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("threat-intelligence")}
                   />
                 </div>
@@ -342,7 +342,7 @@ const Pricing = () => {
                     <span>Customizable Security Policies</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("security-policies")}
                   />
                 </div>
@@ -352,7 +352,7 @@ const Pricing = () => {
                     <span>Dedicated Cloud Resources</span>
                   </div>
                   <InformationCircleIcon
-                    className="w-6 text-blue-500 cursor-pointer flex-shrink-0"
+                    className="w-6 ml-1 text-blue-500 cursor-pointer flex-shrink-0"
                     onClick={() => handleInfoClick("cloud-resources")}
                   />
                 </div>
@@ -367,7 +367,7 @@ const Pricing = () => {
         {/* Modal */}
         {showInfo && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded-lg max-w-lg w-full">
+            <div className="bg-white p-6 rounded-lg max-w-lg w-[95%]">
               <h3 className="text-2xl font-bold mb-4 text-gray-900">
                 {featureTitles[showInfo]}
               </h3>
