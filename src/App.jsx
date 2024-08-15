@@ -71,8 +71,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         userProfile={userProfile}
         updateUserProfile={updateUserProfile}
-        setIsLoggedIn={setIsLoggedIn}
-        setUserProfile={setUserProfile}
+        logout={logout}
       />
 
       {showRequestModal && (
