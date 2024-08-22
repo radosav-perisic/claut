@@ -115,7 +115,7 @@ export const Support = () => {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg max-w-lg w-full">
+          <div className="bg-white p-6 rounded-lg max-w-lg w-[95%]">
             <h3 className="text-2xl font-bold mb-4 text-gray-900">{modalTitle}</h3>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
@@ -158,13 +158,13 @@ export const Support = () => {
                 />
               </div>
               <div className="flex items-center justify-between">
-                <button
+                <div
                   type="button"
-                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                  className="px-4 py-2 text-red-600 font-medium rounded"
                   onClick={closeModal}
                 >
                   Cancel
-                </button>
+                </div>
                 <button
                   type="submit"
                   className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
