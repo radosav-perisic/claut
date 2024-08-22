@@ -9,7 +9,7 @@ import shield from '../assets/shield.png';
 const clientId = "846342644392-seh35r69e35ma2pu9i97pcn4c1j8qrc2.apps.googleusercontent.com";
 
 const ProfileModal = ({ showModal, closeModal, isLoggedIn, userProfile, updateUserProfile, logout }) => {
-  
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -63,7 +63,7 @@ const ProfileModal = ({ showModal, closeModal, isLoggedIn, userProfile, updateUs
     };
 
     try {
-      const res = await axios.post("http://localhost:5000/api/register", data);
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/register`, data);
       updateUserProfile(data);
       closeModal();
     } catch (err) {
@@ -101,7 +101,7 @@ const ProfileModal = ({ showModal, closeModal, isLoggedIn, userProfile, updateUs
     }
 
     try {
-      const res = await axios.put("http://localhost:5000/api/profile", formData); 
+      const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/profile`, formData); 
       updateUserProfile(formData); 
       closeModal();
     } catch (err) {
@@ -113,7 +113,7 @@ const ProfileModal = ({ showModal, closeModal, isLoggedIn, userProfile, updateUs
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/login", {
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, {
         email: formData.email,
         password: formData.password,
       });
